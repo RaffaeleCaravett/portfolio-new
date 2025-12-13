@@ -90,7 +90,7 @@
     <div class="col-12 py-5 text-center">
       <p class="h4">{{ item.menuVoice }}</p>
     </div>
-    @for (i of item.items; track $index) {
+    @for (i of item.items; track i.nome) {
     <div class="col-md-6 text-center">
       <p class="h4">
         <b> {{ i.nome }} </b> - {{ i.prezzo | currency : 'EUR' }}

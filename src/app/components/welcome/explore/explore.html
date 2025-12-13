@@ -10,7 +10,7 @@
     @for(i of items; track i.id){
     <p
       class="pl-4 h4 item py-1"
-      [ngClass]="i.id == 12 ? 'text-danger' : ''"
+      [ngClass]="i.id == 13 ? 'text-danger' : ''"
       routerLink="{{ i.route }}"
     >
       {{ i.title }}
@@ -24,7 +24,7 @@
     <div class="position-absolute top-25 border p-2 px-4 menu bg-light">
       <p class="pl-4 h4 item py-1" routerLink="idea" (click)="menu.click()">Idea Behind</p>
       @for(i of items; track i.id){
-      <p class="pl-4 h4 item py-1" [ngClass]="i.id == 12 ? 'text-danger' : ''" routerLink="{{ i.route }}" (click)="menu.click()">
+      <p class="pl-4 h4 item py-1" [ngClass]="i.id == 13 ? 'text-danger' : ''" routerLink="{{ i.route }}" (click)="menu.click()">
         {{ i.title }}
       </p>
       }

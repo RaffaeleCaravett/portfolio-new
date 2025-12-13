@@ -1,0 +1,20 @@
+.bg-personal {
+  background: -webkit-linear-gradient(top, rgb(242, 242, 242), white) !important;
+}
+.todo {
+  background: rgba($color: rgb(255, 191, 0), $alpha: 0.2);
+}
+.prog {
+  background: rgba($color: rgb(0, 225, 255), $alpha: 0.2);
+}
+.done {
+  background: rgba($color: rgb(106, 255, 0), $alpha: 0.2);
+}
+.task {
+  transition: 1s;
+  cursor: pointer;
+  &:hover {
+    transition: 1s;
+    scale: 1.05;
+  }
+}
