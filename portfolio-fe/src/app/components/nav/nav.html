@@ -20,15 +20,15 @@
           variant="text"
         />
       </div>
+      <p-toast />
       @if(showMenu){
       <div class="position-relative">
         <div
           class="p-1 position-absolute menu"
           pTooltip="This is a fake menu, done combined id and value, research is made in lower case, considering also a trimmed combination of id and value."
         >
-          <p-toast />
           @for(a of itemsCopy; track a.id){
-          <p (click)="showTooltip(a)">{{ a.id + ' - ' + a.value }}</p>
+          <p (click)="showTooltip(a, search)">{{ a.id + ' - ' + a.value }}</p>
           }
         </div>
       </div>

@@ -5,6 +5,7 @@ import { ButtonModule } from 'primeng/button';
 import { Tooltip } from 'primeng/tooltip';
 import { Toast } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-nav',
@@ -26,7 +27,7 @@ export class NavComponent {
   ];
   protected itemsCopy: { id: number; value: string }[] = [...this.items];
 
-  constructor(private messageService: MessageService) {}
+  constructor(private messageService: MessageService, private toastr: ToastrService) {}
   checkLensButton(value: string): void {
     console.log(value);
     if (value.length == 0) {
@@ -50,15 +51,21 @@ export class NavComponent {
     }
   }
 
-  showTooltip(a: { id: number; value: string }): void {
-    let random: number = Math.round(Math.random() * 2);
+  showTooltip(a: { id: number; value: string }, search: HTMLInputElement): void {
+    let random: number = Math.random() * 2;
     if (random <= 1) {
       this.messageService.add({
         severity: 'success',
         summary: 'Success',
         detail: 'You clicked ' + a.value + '!',
       });
+    } else {
+      this.toastr.success('You clicked ' + a.value + '!');
     }
+    this.messageService.clear();
+    this.showLensButton = true;
+    this.showMenu = false;
+    search.value = '';
   }
 
   checkBlur(search: HTMLInputElement) {
