@@ -1,9 +1,18 @@
 .row {
-  background:  rgba($color: #ffffff, $alpha: .9) !important;
+  background: rgba($color: #ffffff, $alpha: 0.9) !important;
   .h2 {
     &:hover {
       transition: 1s;
       scale: 1.05;
     }
   }
+}
+.input {
+  box-shadow: none;
+  outline: none;
+}
+.menu {
+  right: 0;
+  max-height: 180px;
+  overflow: auto;
 }

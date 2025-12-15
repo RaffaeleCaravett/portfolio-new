@@ -1,11 +1,46 @@
 <nav class="row text-center p-2">
-  <div class="col-md-4 p-2 h2">
-    <p class="h2 fw-bolder" routerLink="">Portfolio</p>
-  </div>
-  <div class="col-md-4 p-2 h2">
-    <p class="h2 fw-bolder" routerLink="explore">Explore</p>
-  </div>
-  <div class="col-md-4 p-2 h2">
-    <p class="h2 fw-bolder" routerLink="office">Raffaele Caravetta</p>
+  <div class="col-12 p-2 d-flex justify-content-end px-5">
+    <div class="mr-4 text-right">
+      <p class="h3 fw-bolder" routerLink="office">Raffaele Caravetta</p>
+      <div class="border rounded d-flex">
+        <input
+          type="search"
+          class="ml-3 border-0 shadow-0 pt-1 text-right input"
+          placeholder="Search"
+          (focus)="showMenu = true"
+          (input)="checkLensButton(search.value)"
+          (blur)="checkBlur(search)"
+          #search
+        />
+        <p-button
+          icon="pi pi-search"
+          disabled
+          [ngStyle]="{ visibility: showLensButton ? '' : 'hidden' }"
+          severity="secondary"
+          variant="text"
+        />
+      </div>
+      @if(showMenu){
+      <div class="position-relative">
+        <div
+          class="p-1 position-absolute menu"
+          pTooltip="This is a fake menu, done combined id and value, research is made in lower case, considering also a trimmed combination of id and value."
+        >
+          <p-toast />
+          @for(a of itemsCopy; track a.id){
+          <p (click)="showTooltip(a)">{{ a.id + ' - ' + a.value }}</p>
+          }
+        </div>
+      </div>
+      }
+    </div>
+    <div class="pt-1">
+      <img
+        src="assets/footer/raffaele.jpeg"
+        [style.width]="'75px'"
+        [style.height]="'75px'"
+        alt="personal_image"
+      />
+    </div>
   </div>
 </nav>
