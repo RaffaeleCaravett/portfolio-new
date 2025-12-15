@@ -3,17 +3,11 @@ import { MeasuresService } from '../../services/measures.service';
 import { TooltipModule } from 'primeng/tooltip';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { RouterLink, RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgStyle } from '@angular/common';
 
 @Component({
   selector: 'app-welcome',
-  imports: [
-    TooltipModule,
-    MatTooltipModule,
-    RouterLink,
-    CommonModule,
-    RouterModule,
-  ],
+  imports: [TooltipModule, MatTooltipModule, RouterLink, CommonModule, RouterModule, NgStyle],
   templateUrl: './welcome.html',
   styleUrl: './welcome.scss',
 })
