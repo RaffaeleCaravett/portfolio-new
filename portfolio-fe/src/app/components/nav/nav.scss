@@ -1,0 +1,9 @@
+.row {
+  background: rgb(255, 255, 255) !important;
+  .h2 {
+    &:hover {
+      transition: 1s;
+      scale: 1.05;
+    }
+  }
+}
