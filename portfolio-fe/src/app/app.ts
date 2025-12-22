@@ -1,14 +1,13 @@
 import { Component, HostListener, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavComponent } from './components/nav/nav';
-import { WelcomeComponent } from './components/welcome/welcome';
 import { FootComponent } from './components/foot/foot';
 import { NgStyle } from '@angular/common';
 import { MeasuresService } from './services/measures.service';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, NavComponent, WelcomeComponent, FootComponent, NgStyle],
+  imports: [RouterOutlet, NavComponent, FootComponent, NgStyle],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
