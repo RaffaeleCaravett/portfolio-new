@@ -1,22 +1,35 @@
-.box {
-  transition: .5s;
-  background: linear-gradient(to top, #cc053a,#c02ea5,#e4b313, #c609df,#1e2ace,#0ad1d8);
-  button {
+h1 {
+  font-size: 9vw;
+}
+h2 {
+  font-size: 3vw;
+}
+.hoverable {
+  transition: 1s;
+  width: 140px;
+  cursor: pointer;
+  overflow: hidden;
+  h3 {
+    width: 130px;
     transition: 1s;
   }
-  div {
-    transition: .5s;
+  p {
+    width: 130px;
+    bottom: -15px;
+    left: -200px;
+    transition: 1s;
   }
   &:hover {
-    transition: .5s;
-    scale: 1.04;
-    div {
-      transition: .5s;
-      scale: .96;
-    }
-    button {
+    transition: 1s;
+    h3 {
       transition: 1s;
-      scale: 1.1;
+      scale: 1.05;
+    }
+    p {
+      transition: 1s;
+      scale: 1.05;
+      bottom: -15px;
+      left: 0px;
     }
   }
 }

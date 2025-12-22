@@ -1,13 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { MeasuresService } from '../../services/measures.service';
-import { NgStyle } from '@angular/common';
 import { TooltipModule } from 'primeng/tooltip';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-welcome',
-  imports: [NgStyle, TooltipModule, MatTooltipModule, RouterLink, RouterLink],
+  imports: [
+    TooltipModule,
+    MatTooltipModule,
+    RouterLink,
+    CommonModule,
+    RouterModule,
+  ],
   templateUrl: './welcome.html',
   styleUrl: './welcome.scss',
 })

@@ -1,12 +1,77 @@
+import { NgStyle } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { ButtonModule } from 'primeng/button';
+import { Tooltip } from 'primeng/tooltip';
+import { Toast } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-nav',
-  imports: [RouterLink],
+  imports: [RouterLink, ButtonModule, NgStyle, Tooltip, Toast],
+  providers: [MessageService],
   templateUrl: './nav.html',
   styleUrl: './nav.scss',
 })
 export class NavComponent {
+  protected showLensButton: boolean = true;
+  protected showMenu: boolean = false;
+  protected items: { id: number; value: string }[] = [
+    { id: 1, value: 'Java' },
+    { id: 2, value: 'Spring' },
+    { id: 3, value: 'Spring boot' },
+    { id: 4, value: 'Javascript' },
+    { id: 5, value: 'Typescript' },
+    { id: 6, value: 'Angular' },
+  ];
+  protected itemsCopy: { id: number; value: string }[] = [...this.items];
 
+  constructor(private messageService: MessageService, private toastr: ToastrService) {}
+  checkLensButton(value: string): void {
+    console.log(value);
+    if (value.length == 0) {
+      this.showLensButton = true;
+      this.itemsCopy = [
+        { id: 1, value: 'Java' },
+        { id: 2, value: 'Spring' },
+        { id: 3, value: 'Spring boot' },
+        { id: 4, value: 'Javascript' },
+        { id: 5, value: 'Typescript' },
+        { id: 6, value: 'Angular' },
+      ];
+    } else {
+      this.showLensButton = false;
+      this.itemsCopy = this.items.filter(
+        (i) =>
+          i.value.toLocaleLowerCase().includes(value.toLocaleLowerCase()) ||
+          i.id.toString().includes(value) ||
+          (i.id + ' - ' + i.value).toLocaleLowerCase().includes(value.toLocaleLowerCase())
+      );
+    }
+  }
+
+  showTooltip(a: { id: number; value: string }, search: HTMLInputElement): void {
+    let random: number = Math.random() * 2;
+    if (random <= 1) {
+      this.messageService.add({
+        severity: 'success',
+        summary: 'Success',
+        detail: 'You clicked ' + a.value + '!',
+      });
+    } else {
+      this.toastr.success('You clicked ' + a.value + '!');
+    }
+    this.messageService.clear();
+    this.showLensButton = true;
+    this.showMenu = false;
+    search.value = '';
+  }
+
+  checkBlur(search: HTMLInputElement) {
+    if (!this.showMenu) {
+      search.value = '';
+      this.showLensButton = true;
+    }
+  }
 }
