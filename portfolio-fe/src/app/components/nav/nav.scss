@@ -1,0 +1,9 @@
+.row {
+  background:  rgba($color: #ffffff, $alpha: .9) !important;
+  .h2 {
+    &:hover {
+      transition: 1s;
+      scale: 1.05;
+    }
+  }
+}

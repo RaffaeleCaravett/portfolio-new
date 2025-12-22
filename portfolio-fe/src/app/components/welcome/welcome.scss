@@ -1,0 +1,22 @@
+.box {
+  transition: .5s;
+  background: linear-gradient(to top, #cc053a,#c02ea5,#e4b313, #c609df,#1e2ace,#0ad1d8);
+  button {
+    transition: 1s;
+  }
+  div {
+    transition: .5s;
+  }
+  &:hover {
+    transition: .5s;
+    scale: 1.04;
+    div {
+      transition: .5s;
+      scale: .96;
+    }
+    button {
+      transition: 1s;
+      scale: 1.1;
+    }
+  }
+}
