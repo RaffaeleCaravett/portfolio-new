@@ -1,5 +1,5 @@
 import { NgStyle } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { Tooltip } from 'primeng/tooltip';
@@ -14,7 +14,7 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './nav.html',
   styleUrl: './nav.scss',
 })
-export class NavComponent {
+export class NavComponent implements OnInit {
   protected showLensButton: boolean = true;
   protected showMenu: boolean = false;
   protected items: { id: number; value: string }[] = [
@@ -26,8 +26,12 @@ export class NavComponent {
     { id: 6, value: 'Angular' },
   ];
   protected itemsCopy: { id: number; value: string }[] = [...this.items];
-
+  protected innerWidth: number = 0;
   constructor(private messageService: MessageService, private toastr: ToastrService) {}
+
+  ngOnInit(): void {
+    this.innerWidth = window.innerWidth;
+  }
   checkLensButton(value: string): void {
     console.log(value);
     if (value.length == 0) {
@@ -73,5 +77,9 @@ export class NavComponent {
       search.value = '';
       this.showLensButton = true;
     }
+  }
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.innerWidth = window.innerWidth;
   }
 }

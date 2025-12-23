@@ -8,37 +8,29 @@
   position: fixed;
 }
 h1 {
-  font-size: 9vw;
+  font-size: 8vw;
 }
 h2 {
-  font-size: 3vw;
+  font-size: 2.5vw;
 }
 .hoverable {
   transition: 1s;
-  width: 140px;
+  width: 170px;
   cursor: pointer;
   overflow: hidden;
-  h3 {
-    width: 130px;
+  .explore {
+    border: 5px solid black;
+    width: 150px;
     transition: 1s;
-  }
-  p {
-    width: 130px;
-    bottom: -15px;
-    left: -200px;
-    transition: 1s;
+    color: black!important;
+    font-weight: bold;
   }
   &:hover {
     transition: 1s;
-    h3 {
+    .explore {
       transition: 1s;
-      scale: 1.05;
-    }
-    p {
-      transition: 1s;
-      scale: 1.05;
-      bottom: -15px;
-      left: 0px;
+      background-color: black;
+      color: white!important;
     }
   }
 }

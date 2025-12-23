@@ -1,13 +1,10 @@
 import { Component, HostListener, inject, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { NavComponent } from './components/nav/nav';
-import { FootComponent } from './components/foot/foot';
-import { NgStyle } from '@angular/common';
 import { MeasuresService } from './services/measures.service';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, NavComponent, FootComponent, NgStyle],
+  imports: [RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
@@ -26,6 +23,6 @@ export class App {
 
   resizeWelcomeHeight() {
     this.welcomeHeight = window.innerHeight;
-    this.measuresService.measureNext((this.welcomeHeight - 50) + 'px');
+    this.measuresService.measureNext(this.welcomeHeight + 'px', window.innerWidth + 'px');
   }
 }

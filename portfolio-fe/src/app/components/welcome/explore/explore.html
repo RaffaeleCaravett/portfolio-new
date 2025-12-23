@@ -1,3 +1,30 @@
-<app-nav></app-nav>
-<router-outlet />
-<app-foot></app-foot>
+<app-nav (click)="showMenu = false"></app-nav>
+<div class="row">
+  @if(innerWidth>950){
+  <div class="col-2 pt-5">
+    <p class="pl-4 h4 item py-1" routerLink="idea">Idea Behind</p>
+    @for(i of items; track i.id){
+    <p class="pl-4 h4 item py-1" routerLink="{{ i.route }}">{{ i.title }}</p>
+    }
+  </div>
+  }@else {
+  <div class="col-1 text-start pl-5 pt-5 position-relative">
+    <i class="pi pi-bars" style="font-size: 1.5rem" #menu (click)="openMenu()"></i>
+    @if(showMenu){
+    <div class="position-absolute top-25 border p-2 menu bg-light">
+      <p class="pl-4 h4 item py-1" routerLink="idea" (click)="menu.click()">Idea Behind</p>
+      @for(i of items; track i.id){
+      <p class="pl-4 h4 item py-1" routerLink="{{ i.route }}" (click)="menu.click()">
+        {{ i.title }}
+      </p>
+      }
+    </div>
+    }
+  </div>
+  <div class="col-11 w-100" (click)="showMenu = false" style="height: 125px"></div>
+  }
+  <div class="col-md-10 m-auto" (click)="showMenu = false">
+    <router-outlet />
+  </div>
+</div>
+<app-foot (click)="showMenu = false"></app-foot>

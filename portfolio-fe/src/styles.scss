@@ -1,21 +1,24 @@
-
 // Include theming for Angular Material with `mat.theme()`.
 // This Sass mixin will define CSS variables that are used for styling Angular Material
 // components according to the Material 3 design spec.
 // Learn more about theming and how to use it for your application's
 // custom components at https://material.angular.dev/guide/theming
 @use '@angular/material' as mat;
+@use "primeicons/primeicons.css" as *;
 
+@use "ngx-toastr/toastr" as *;
 html {
   height: 100%;
-  @include mat.theme((
-    color: (
-      primary: mat.$azure-palette,
-      tertiary: mat.$blue-palette,
-    ),
-    typography: Roboto,
-    density: 0,
-  ));
+  @include mat.theme(
+    (
+      color: (
+        primary: mat.$azure-palette,
+        tertiary: mat.$blue-palette,
+      ),
+      typography: Roboto,
+      density: 0,
+    )
+  );
 }
 
 body {
@@ -50,10 +53,20 @@ body {
   font-family: 'Arima', system-ui;
   font-optical-sizing: auto;
 }
-.rounded {
+.rounded{
   border-radius: 1rem !important;
 }
-@import "primeicons/primeicons.css";
+.rounded-top{
+  border-top-left-radius: 1rem!important;
+  border-top-right-radius: 1rem!important;
+}
 .pi {
-  font-family: "primeicons" !important;
+  font-family: 'primeicons' !important;
+}
+
+span {
+  background: -webkit-linear-gradient(left, rgb(5, 223, 243), #a910bd);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;
 }

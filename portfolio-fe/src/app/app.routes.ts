@@ -1,8 +1,16 @@
 import { Routes } from '@angular/router';
-import { WelcomeComponent } from './components/welcome/welcome';
 import { ErrorComponent } from './components/error/error';
+import { WelcomeRoutes } from './components/welcome/welcome.routes';
 
 export const routes: Routes = [
-  { path: '', component: WelcomeComponent, pathMatch: 'full' },
+  {
+    path: 'welcome',
+    loadChildren: () => Promise.resolve(WelcomeRoutes),
+  },
   { path: '**', component: ErrorComponent },
+  {
+    path: '',
+    redirectTo: 'welcome',
+    pathMatch: 'full',
+  }
 ];

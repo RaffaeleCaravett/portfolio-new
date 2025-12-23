@@ -5,11 +5,11 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class MeasuresService {
-  public measure: BehaviorSubject<string> = new BehaviorSubject<string>('');
+  public measure: BehaviorSubject<string[]> = new BehaviorSubject<string[]>([]);
 
-  measureNext(value: string) {
-    if (value && value.length > 0) {
-      this.measure.next(value);
+  measureNext(valueHeight: string, valueWidth: string) {
+    if (valueHeight && valueHeight.length > 0 && valueWidth && valueWidth.length > 0) {
+      this.measure.next([valueHeight, valueWidth]);
     }
   }
 }
