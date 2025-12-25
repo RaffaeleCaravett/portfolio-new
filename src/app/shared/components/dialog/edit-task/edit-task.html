@@ -1,0 +1,65 @@
+<div mat-dialog-title class="text-center"><p class="h2">Preview</p></div>
+<div mat-dialog-content class="text-center">
+  @if (showSkeleton) {
+  <ngx-skeleton-loader count="1" appearance="line" size="400" />
+  <ngx-skeleton-loader count="1" appearance="line" size="400" />
+  <ngx-skeleton-loader count="1" appearance="line" size="400" />
+  <ngx-skeleton-loader count="1" appearance="line" size="400" />
+  }@else {
+  <form [formGroup]="taskForm" class="row">
+    <div class="col-12">
+      <label for="title" class="py-1">Title</label>
+      <input type="text" formControlName="title" class="form-control" />
+      @if(taskForm.controls['title'].hasError('required')){
+      <p class="text-danger">Il campo è richiesto</p>
+      }
+    </div>
+    <div class="col-md-6">
+      <label for="title" class="py-1">Assiged to</label>
+      <select type="text" formControlName="assignedTo" class="form-control">
+        @for (item of users; track $index) {
+        <option value="{{ item.fullname }}">{{ item.fullname }}</option>
+        }
+      </select>
+      @if(taskForm.controls['assignedTo'].hasError('required')){
+      <p class="text-danger">Il campo è richiesto</p>
+      }
+    </div>
+    <div class="col-md-6">
+      <label for="title" class="py-1">State</label>
+      <select type="text" formControlName="state" class="form-control">
+        @for (item of states; track $index) {
+        <option value="{{ item.state }}">{{ item.state }}</option>
+        }
+      </select>
+      @if(taskForm.controls['state'].hasError('required')){
+      <p class="text-danger">Il campo è richiesto</p>
+      }
+    </div>
+    <div class="col-12">
+      <label for="title" class="py-1">Description</label>
+      <input type="text" formControlName="description" class="form-control" />
+      @if(taskForm.controls['description'].hasError('required')){
+      <p class="text-danger">Il campo è richiesto</p>
+      }
+    </div>
+    <div class="col-12">
+      <label for="title" class="py-1">Created at </label>
+      <input type="text" formControlName="createdAt" readonly class="form-control" />
+      @if(taskForm.controls['createdAt'].hasError('required')){
+      <p class="text-danger">Il campo è richiesto</p>
+      }
+    </div>
+  </form>
+  <p class="text-right p-3">
+    <button class="btn" (click)="dialogRef.close(null)">Go back</button>
+    <button
+      class="btn btn-outline-dark"
+      [disabled]="taskForm.invalid"
+      (click)="dialogRef.close(taskForm.controls)"
+    >
+      Submit
+    </button>
+  </p>
+  }
+</div>
