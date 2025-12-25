@@ -1,0 +1,36 @@
+<div mat-dialog-title class="text-center">
+  <p class="h2">Confirm</p>
+</div>
+<div mat-dialog-content>
+  <div class="col-12 py-5 text-center">
+    <p class="h4">
+      <b> {{ selectedItem.nome }} </b> - {{ selectedItem.prezzo | currency : 'EUR' }}
+    </p>
+    <p class="h5">
+      {{ selectedItem.ingredienti }}
+    </p>
+    <form [formGroup]="addForm">
+      <label for="request py-2">Particular requests :</label>
+      <textarea
+        name="request"
+        class="form-control"
+        id="request"
+        formControlName="request"
+        rows="5"
+      ></textarea>
+      @if (addForm.controls['request'].hasError('maxlength')) {
+      <p class="text-danger text-start py-2"><b>Inserisci massimo 200 caratteri.</b></p>
+      }
+    </form>
+  </div>
+</div>
+<div mat-dialog-actions class="d-flex justify-content-end mx-3">
+  <button
+    class="btn mx-1 border border-dark"
+    (click)="close(true)"
+    [disabled]="addForm.controls['request'].hasError('maxlength')"
+  >
+    {{ action == 'add' ? 'Add' : 'Remove' }}
+  </button>
+  <button class="btn mx-1 border" (click)="close(false)">Back</button>
+</div>

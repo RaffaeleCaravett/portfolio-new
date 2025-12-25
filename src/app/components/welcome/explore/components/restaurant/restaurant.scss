@@ -1,0 +1,61 @@
+.cover {
+  height: 300px;
+  background: url('/assets/restaurant/cover.jpg');
+  h1 {
+    font-size: 4.5rem;
+    text-shadow: 0.5px 0.5px 0.5px black;
+  }
+  p {
+    font-size: 1.5rem;
+    text-shadow: 0.5px 0.5px 0.5px black;
+  }
+}
+
+.menu-voice {
+  transition: 1s;
+  &:hover {
+    transition: 1s;
+    background-color: black;
+    color: white;
+  }
+}
+.h3 {
+  letter-spacing: 7px !important;
+  span {
+    letter-spacing: normal !important;
+  }
+}
+p {
+  line-height: 1.4;
+}
+.btn {
+  .chart-count {
+    background: black !important;
+  }
+  &:hover {
+    .chart-count {
+      top: -10px;
+      -webkit-text-fill-color: red !important;
+    }
+  }
+}
+.chart-count {
+  transition: 1.3s;
+  top: -10px;
+  background: none !important;
+  -webkit-text-fill-color: red !important;
+}
+.border-0{
+  outline: none!important;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type=number] {
+    -moz-appearance:textfield;
+    background: white; /* Firefox */
+}
