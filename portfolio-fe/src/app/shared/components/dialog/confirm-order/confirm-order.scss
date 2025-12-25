@@ -1,0 +1,8 @@
+.border-dark {
+  border: 3px solid black !important;
+  transition: .5s;
+  &:hover {
+    transition: .5s;
+    scale: 1.05;
+  }
+}
