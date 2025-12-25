@@ -1,6 +1,14 @@
 <div class="base" [ngStyle]="{ height: height }">
-  <video autoplay muted loop id="myVideo">
-    <source src="assets/welcome/wheat.mp4" type="video/mp4" />
+  <video
+    muted
+    loop
+    autoplay
+    id="myVideo"
+    #video
+    (canplay)="video.play()"
+    (loadedmetadata)="video.muted = true"
+  >
+    <source src="/assets/welcome/wheat.mp4" type="video/mp4" />
   </video>
   <div class="row">
     <div class="row w-100 bg-gradient">

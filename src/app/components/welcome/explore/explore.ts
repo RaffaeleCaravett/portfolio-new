@@ -26,7 +26,7 @@ export class ExploreComponent implements OnInit {
   public navUpdate: boolean = false;
   ngOnInit(): void {
     this.items = this.sharedService.getSlides();
-    this.router.navigate(['/welcome/explore/task']);
+    this.router.navigate(['/welcome/explore/idea']);
     this.innerWidth = window.innerWidth;
   }
 

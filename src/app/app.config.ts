@@ -9,6 +9,7 @@ import { provideToastr } from 'ngx-toastr';
 import { provideHttpClient } from '@angular/common/http';
 import { registerLocaleData } from '@angular/common';
 import localeIt from '@angular/common/locales/it';
+import { provideNgxSkeletonLoader } from 'ngx-skeleton-loader';
 
 registerLocaleData(localeIt);
 
@@ -29,5 +30,11 @@ export const appConfig: ApplicationConfig = {
     provideAnimations(),
     provideHttpClient(),
     { provide: LOCALE_ID, useValue: 'it-IT' },
+    provideNgxSkeletonLoader({
+      theme: {
+        extendsFromRoot: true,
+        height: '30px',
+      },
+    }),
   ],
 };

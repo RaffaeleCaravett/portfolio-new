@@ -10,6 +10,7 @@ import {
 } from '@angular/cdk/drag-drop';
 import { Tooltip } from 'primeng/tooltip';
 import { MatDialog } from '@angular/material/dialog';
+import { EditTaskComponent } from '../../../../../shared/components/dialog/edit-task/edit-task';
 
 @Component({
   selector: 'app-task',
@@ -28,12 +29,20 @@ export class TaskComponent implements OnInit {
       state: TaskStates;
       assignedTo: string;
       createdAt: string;
+      description: string;
     }[];
   } | null = null;
   protected projects: {
     id: number;
     name: string;
-    tasks: { id: number; name: string; state: TaskStates; assignedTo: string; createdAt: string }[];
+    tasks: {
+      id: number;
+      name: string;
+      state: TaskStates;
+      assignedTo: string;
+      createdAt: string;
+      description: string;
+    }[];
   }[] = [
     {
       id: 1,
@@ -45,6 +54,7 @@ export class TaskComponent implements OnInit {
           state: TaskStates.TO_DO,
           assignedTo: 'Sesti Osseo',
           createdAt: '11-04-2025',
+          description: 'Casual description',
         },
         {
           id: 2,
@@ -52,6 +62,7 @@ export class TaskComponent implements OnInit {
           state: TaskStates.TO_DO,
           assignedTo: 'Mario Rossi',
           createdAt: '13-06-2025',
+          description: 'Casual description',
         },
         {
           id: 3,
@@ -59,6 +70,7 @@ export class TaskComponent implements OnInit {
           state: TaskStates.TO_DO,
           assignedTo: 'Luigi Bianchi',
           createdAt: '21-10-2025',
+          description: 'Casual description',
         },
       ],
     },
@@ -69,6 +81,7 @@ export class TaskComponent implements OnInit {
     state: TaskStates;
     assignedTo: string;
     createdAt: string;
+    description: string;
   }[] = [];
   protected progress: {
     id: number;
@@ -76,6 +89,7 @@ export class TaskComponent implements OnInit {
     state: TaskStates;
     assignedTo: string;
     createdAt: string;
+    description: string;
   }[] = [];
   protected done: {
     id: number;
@@ -83,6 +97,7 @@ export class TaskComponent implements OnInit {
     state: TaskStates;
     assignedTo: string;
     createdAt: string;
+    description: string;
   }[] = [];
 
   protected cdr: ChangeDetectorRef = inject(ChangeDetectorRef);
@@ -103,7 +118,14 @@ export class TaskComponent implements OnInit {
 
   drop(
     event: CdkDragDrop<
-      { id: number; name: string; state: TaskStates; assignedTo: string; createdAt: string }[],
+      {
+        id: number;
+        name: string;
+        state: TaskStates;
+        assignedTo: string;
+        createdAt: string;
+        description: string;
+      }[],
       any,
       any
     >
@@ -136,7 +158,47 @@ export class TaskComponent implements OnInit {
     }, 1000);
   }
 
-  edit(t: { id: number; name: string; state: TaskStates; assignedTo: string; createdAt: string }) {
-    const dialogRef = this.dialog.open({});
+  edit(t: {
+    id: number;
+    name: string;
+    state: TaskStates;
+    assignedTo: string;
+    createdAt: string;
+    description: string;
+  }) {
+    const dialogRef = this.dialog.open(EditTaskComponent, { data: t });
+
+    dialogRef.afterClosed().subscribe({
+      next: (data: any) => {
+        if (data) {
+          t.name = data.title.value;
+          t.description = data.description.value;
+          t.assignedTo = data.assignedTo.value;
+          t.state = data.state.value;
+          this.cdr.markForCheck();
+
+          if (t.state == TaskStates.COMPLETE) {
+            if (!this.done.includes(t)) {
+              this.done.push(t);
+              this.toDo = this.toDo.filter((ta) => ta.id != t.id);
+              this.progress = this.progress.filter((ta) => ta.id != t.id);
+            }
+          } else if (t.state == TaskStates.TO_DO) {
+            if (!this.toDo.includes(t)) {
+              this.toDo.push(t);
+              this.done = this.done.filter((ta) => ta.id != t.id);
+              this.progress = this.progress.filter((ta) => ta.id != t.id);
+            }
+          } else {
+            if (!this.progress.includes(t)) {
+              this.progress.push(t);
+              this.toDo = this.toDo.filter((ta) => ta.id != t.id);
+              this.done = this.done.filter((ta) => ta.id != t.id);
+            }
+          }
+          this.cdr.markForCheck();
+        }
+      },
+    });
   }
 }
