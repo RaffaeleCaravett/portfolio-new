@@ -19,11 +19,12 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Build Angular Application
+        working-directory: portfolio-fe
         run: |
           ls
           npm install -g @angular/cli
           npm install
-          ng build
+          ng build --configuration=production
 
       - name: Deploy to S3
         run: |
