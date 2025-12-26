@@ -29,8 +29,8 @@ jobs:
       - name: Deploy to S3
         run: |
           ls
-          aws s3 sync portfolio-fe/dist/portfolio-fe/browser/* s3://${{ secrets.S3_BUCKET_NAME }} \
+          aws s3 sync portfolio-fe/dist/portfolio-fe/browser/ s3://${{ secrets.S3_BUCKET_NAME }} \
             --delete \
             --exclude ".git/*" \
             --exclude ".github/*"
-            --include portfolio-fe/dist/portfolio-fe/browser/media/*
+            --include portfolio-fe/dist/portfolio-fe/browser/media/
