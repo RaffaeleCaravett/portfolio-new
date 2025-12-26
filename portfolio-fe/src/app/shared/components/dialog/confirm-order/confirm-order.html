@@ -25,6 +25,7 @@
   </div>
 </div>
 <div mat-dialog-actions class="d-flex justify-content-end mx-3">
+  @if(action!='modify'){
   <button
     class="btn mx-1 border border-dark"
     (click)="close(true)"
@@ -32,7 +33,7 @@
   >
     {{ action == 'add' ? 'Add' : 'Remove' }}
   </button>
-  @if(action=='modify'){
+  }@else if(action=='modify'){
   <button
     class="btn mx-1 border border-primary"
     (click)="close(true)"
