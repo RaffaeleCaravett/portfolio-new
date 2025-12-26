@@ -6,8 +6,10 @@
     preload="auto"
     id="myVideo"
     #video
+    (canplay)="video.play()"
+    (loadedmetadata)="video.muted = true"
   >
-    <source src="/assets/welcome/wheat.mp4" type="video/mp4" />
+    <source src="assets/welcome/wheat.mp4" type="video/mp4" />
   </video>
   <div class="row">
     <div class="row w-100 bg-gradient">
