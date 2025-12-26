@@ -73,13 +73,12 @@ export class RestaurantComponent implements OnInit, OnDestroy {
     dialogRef.afterClosed().subscribe((datas: addItem | boolean | string) => {
       if (datas) {
         if (action == 'add' && (datas as addItem)?.add == true) {
-          console.log((datas as addItem)?.item?.note);
           item.note = (datas as addItem)?.item?.note || item.note;
           this.chart.push(item);
         } else if (action == 'remove' && (datas as addItem)?.add == true) {
           this.chart = this.chart.filter((i) => i != item);
         } else {
-          if (datas && (datas as addItem)?.add != false && (datas as addItem)?.add != true) {
+          if (datas && (datas as addItem)?.add == true) {
             item.note = (datas as addItem).item.note || item.note;
             this.cdr.markForCheck();
           }
