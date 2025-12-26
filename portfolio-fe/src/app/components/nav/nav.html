@@ -7,7 +7,7 @@
           type="search"
           class="ml-3 border-0 shadow-0 pt-1 text-right input"
           placeholder="Search"
-          (focus)="showMenu = true"
+          (focus)="showMenu = true; emitMenu.emit(showMenu)"
           (input)="checkLensButton(search.value)"
           (blur)="checkBlur(search)"
           #search
@@ -24,11 +24,16 @@
       @if(showMenu){
       <div class="position-relative">
         <div
-          class="p-1 position-absolute menu"
+          class="p-1 position-absolute menu bg-light"
           pTooltip="This is a fake menu, done combined id and value, research is made in lower case, considering also a trimmed combination of id and value."
         >
+          <p class="text-right">
+            <button class="btn p-0" (click)="showMenu = false; emitMenu.emit(showMenu)">
+              <i class="pi pi-times text-danger"></i>
+            </button>
+          </p>
           @for(a of itemsCopy; track a.id){
-          <p (click)="showTooltip(a, search)">{{ a.id + ' - ' + a.value }}</p>
+          <p class="text-left" (click)="showTooltip(a, search)">{{ a.id + ' - ' + a.value }}</p>
           }
         </div>
       </div>
@@ -36,7 +41,7 @@
     </div>
     <div class="pt-1">
       <img
-        src="assets/footer/raffaele.jpeg"
+        src="/assets/footer/raffaele.jpeg"
         [style.width]="'75px'"
         [style.height]="'75px'"
         alt="personal_image"
@@ -45,7 +50,7 @@
   </div>
   @if (innerWidth >580) {
   <div class="col-1 pt-4" style="font-size: 1.5rem">
-    <i class="pi pi-globe" style="font-size: 1.5rem"></i> IT
+    <i class="pi pi-globe" style="font-size: 1.5rem"></i> EN
   </div>
   }
 </nav>

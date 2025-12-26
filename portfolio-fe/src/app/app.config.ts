@@ -1,4 +1,4 @@
-import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
+import { ApplicationConfig, LOCALE_ID, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { provideAnimations } from '@angular/platform-browser/animations';
 
@@ -6,6 +6,12 @@ import { routes } from './app.routes';
 import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeuix/themes/aura';
 import { provideToastr } from 'ngx-toastr';
+import { provideHttpClient } from '@angular/common/http';
+import { registerLocaleData } from '@angular/common';
+import localeIt from '@angular/common/locales/it';
+import { provideNgxSkeletonLoader } from 'ngx-skeleton-loader';
+
+registerLocaleData(localeIt);
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -21,6 +27,14 @@ export const appConfig: ApplicationConfig = {
       positionClass: 'toast-top-left',
       preventDuplicates: true,
     }),
-    provideAnimations()
+    provideAnimations(),
+    provideHttpClient(),
+    { provide: LOCALE_ID, useValue: 'it-IT' },
+    provideNgxSkeletonLoader({
+      theme: {
+        extendsFromRoot: true,
+        height: '30px',
+      },
+    }),
   ],
 };

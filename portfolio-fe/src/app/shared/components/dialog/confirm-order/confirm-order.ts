@@ -1,5 +1,5 @@
 import { CurrencyPipe } from '@angular/common';
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import {
   MAT_DIALOG_DATA,
   MatDialogActions,
@@ -15,7 +15,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
   templateUrl: './confirm-order.html',
   styleUrl: './confirm-order.scss',
 })
-export class ConfirmOrderComponent implements OnInit {
+export class ConfirmOrderComponent implements OnInit, OnDestroy {
   protected selectedItem!: { nome: string; prezzo: number; ingredienti: string[]; note?: string };
   protected action: string = '';
   protected addForm: FormGroup = new FormGroup({});
@@ -28,11 +28,17 @@ export class ConfirmOrderComponent implements OnInit {
     this.selectedItem = this.data[0];
     this.action = this.data[1];
     this.addForm = new FormGroup({
-      request: new FormControl('', Validators.maxLength(200)),
+      request: new FormControl(this.selectedItem?.note || '', Validators.maxLength(200)),
     });
   }
   close(add: boolean) {
-    this.selectedItem.note = this.addForm.controls['request'].value || '';
+    if (add == true) {
+      this.selectedItem.note = this.addForm.controls['request'].value || '';
+    }
+    this.addForm.reset();
     this.dialogRef.close({ add: add, item: this.selectedItem });
+  }
+  ngOnDestroy() {
+    this.addForm.reset();
   }
 }

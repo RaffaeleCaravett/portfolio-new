@@ -1,0 +1,129 @@
+<div class="container bg-white my-5">
+  <div class="row">
+    <div class="col-12 d-flex justify-content-between align-items-end bg-personal">
+      <img
+        src="/assets/task/taskLogo.png"
+        [style.width]="'100px'"
+        [style.heights]="'100px'"
+        alt="logo"
+      />
+      <p class="h3">
+        Manage your tasks <i class="pi pi-book text-primary" style="font-size: 1.5rem"></i>
+      </p>
+    </div>
+    <div class="col-md-9 pt-4">
+      <p class="h4">Hi, yourname</p>
+    </div>
+    <div class="col-lg-3 pt-4 d-flex justify-content-between">
+      <form [formGroup]="projectForm">
+        <label for="project" class="py-2 h4">Project</label>
+        <select
+          name="project"
+          id="project"
+          formControlName="project"
+          class="form-control"
+          [style.width]="'200px'"
+          (change)="selectProject()"
+        >
+          <option value="" selected>Select an option</option>
+          @for(p of projects; track p.id){
+          <option value="{{ p.id }}">{{ p.name }}</option>
+          }
+        </select>
+      </form>
+    </div>
+    <div class="col-12 py-5 my-5">
+      @if (!selectedProject) {
+      <div class="d-flex justify-content-center">
+        <img
+          src="/assets/task/vietato.webp"
+          alt="vietato"
+          [style.width]="'300px'"
+          [style.height]="'300px'"
+        />
+      </div>
+      <div class="text-center pt-3">
+        <p class="h4">No project selected</p>
+      </div>
+      }@else {
+      <div class="row text-center">
+        <div class="col-md-4 p-2">
+          <div
+            class="w-100 border shadow p-2 overflow-auto rounded todo"
+            [style.height]="'600px'"
+            cdkDropList
+            #toBeDone="cdkDropList"
+            [cdkDropListData]="toDo"
+            [cdkDropListConnectedTo]="[completed, working]"
+            (cdkDropListDropped)="drop($event)"
+          >
+            <p class="h3 pb-5 pt-3">To do</p>
+            @for(t of toDo;track t.id){
+            <div class="bg-light my-2 rounded text-left task shadow" cdkDrag>
+              <p class="text-right pt-3 pr-3">
+                <i class="pi pi-pencil" pTooltip="Edit" (click)="edit(t)"></i>
+              </p>
+              <p class="p-2 bg-light rounded mt-2 text-left h4">
+                {{ t.id + ' - ' + t.name }}
+                <strong class="text-warning h6">{{ t.state }}</strong>
+              </p>
+              <p class="h6 text-left">Assigned to : {{ t.assignedTo }}</p>
+            </div>
+            }
+          </div>
+        </div>
+        <div class="col-md-4 p-2">
+          <div
+            class="w-100 border shadow p-2 overflow-auto rounded prog"
+            [style.height]="'600px'"
+            cdkDropList
+            #working="cdkDropList"
+            [cdkDropListData]="progress"
+            [cdkDropListConnectedTo]="[toBeDone, completed]"
+            (cdkDropListDropped)="drop($event)"
+          >
+            <p class="h3 pb-5 pt-3">Progress</p>
+            @for(t of progress;track t.id){
+            <div class="bg-light my-2 rounded text-left task shadow" cdkDrag>
+              <p class="text-right pt-3 pr-3">
+                <i class="pi pi-pencil" pTooltip="Edit" (click)="edit(t)"></i>
+              </p>
+              <p class="p-2 bg-light rounded mt-2 text-left h4">
+                {{ t.id + ' - ' + t.name }}
+                <strong class="text-info h6">{{ t.state }}</strong>
+              </p>
+              <p class="h6 text-left">Assigned to : {{ t.assignedTo }}</p>
+            </div>
+            }
+          </div>
+        </div>
+        <div class="col-md-4 p-2">
+          <div
+            class="w-100 border shadow p-2 overflow-auto rounded done"
+            [style.height]="'600px'"
+            cdkDropList
+            #completed="cdkDropList"
+            [cdkDropListData]="done"
+            [cdkDropListConnectedTo]="[toBeDone, working]"
+            (cdkDropListDropped)="drop($event)"
+          >
+            <p class="h3 pb-5 pt-3">Done</p>
+            @for(t of done;track t.id){
+            <div class="bg-light my-2 rounded text-left task shadow" cdkDrag>
+              <p class="text-right pt-3 pr-3">
+                <i class="pi pi-pencil" pTooltip="Edit" (click)="edit(t)"></i>
+              </p>
+              <p class="p-2 bg-light rounded mt-2 text-left h4">
+                {{ t.id + ' - ' + t.name }}
+                <strong class="text-success h6">{{ t.state }}</strong>
+              </p>
+              <p class="h6 text-left">Assigned to : {{ t.assignedTo }}</p>
+            </div>
+            }
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+</div>

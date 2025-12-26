@@ -1,12 +1,13 @@
-import { Component, HostListener, inject, OnInit } from '@angular/core';
+import { Component,  HostListener, inject, OnInit } from '@angular/core';
 import { NavComponent } from '../../nav/nav';
 import { FootComponent } from '../../foot/foot';
 import { Router, RouterOutlet, RouterLinkWithHref } from '@angular/router';
 import { SharedService } from '../../../services/shared.service';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-explore',
-  imports: [NavComponent, FootComponent, RouterOutlet, RouterLinkWithHref],
+  imports: [NavComponent, FootComponent, RouterOutlet, RouterLinkWithHref, NgClass],
   templateUrl: './explore.html',
   styleUrl: './explore.scss',
 })
@@ -22,6 +23,7 @@ export class ExploreComponent implements OnInit {
   protected sharedService: SharedService = inject(SharedService);
   protected innerWidth: number = 0;
   protected showMenu: boolean = false;
+  public navUpdate: boolean = false;
   ngOnInit(): void {
     this.items = this.sharedService.getSlides();
     this.router.navigate(['/welcome/explore/idea']);
@@ -35,5 +37,8 @@ export class ExploreComponent implements OnInit {
 
   openMenu() {
     this.showMenu = !this.showMenu;
+  }
+  onReceiveNavUpdate(event: any) {
+    this.navUpdate = event;
   }
 }

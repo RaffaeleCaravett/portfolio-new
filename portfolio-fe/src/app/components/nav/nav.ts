@@ -1,5 +1,5 @@
 import { NgStyle } from '@angular/common';
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { Tooltip } from 'primeng/tooltip';
@@ -16,7 +16,8 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class NavComponent implements OnInit {
   protected showLensButton: boolean = true;
-  protected showMenu: boolean = false;
+  @Input() public showMenu: boolean = false;
+  @Output() public emitMenu: EventEmitter<boolean> = new EventEmitter<boolean>();
   protected items: { id: number; value: string }[] = [
     { id: 1, value: 'Java' },
     { id: 2, value: 'Spring' },
@@ -69,6 +70,7 @@ export class NavComponent implements OnInit {
     this.messageService.clear();
     this.showLensButton = true;
     this.showMenu = false;
+    this.emitMenu.emit(this.showMenu);
     search.value = '';
   }
 

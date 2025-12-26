@@ -1,11 +1,19 @@
 .back {
-  background: url('../../../../public/assets/welcome/cloud.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  top:0px;
-  opacity: .4;
+  // background: url('../../../../public/assets/welcome/cloud.png');
+  // background-size: cover;
+  // background-position: center;
+  // background-repeat: no-repeat;
+  top: 0px;
+  opacity: 0.4;
   position: fixed;
+}
+#myVideo {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  opacity: 0.7;
 }
 h1 {
   font-size: 8vw;
@@ -22,7 +30,7 @@ h2 {
     border: 5px solid black;
     width: 150px;
     transition: 1s;
-    color: black!important;
+    color: black !important;
     font-weight: bold;
   }
   &:hover {
@@ -30,7 +38,10 @@ h2 {
     .explore {
       transition: 1s;
       background-color: black;
-      color: white!important;
+      color: white !important;
     }
   }
+}
+.bg-gradient {
+  background: -webkit-linear-gradient(top, rgb(0, 0, 0) , #fcf9f5);
 }
