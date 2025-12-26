@@ -1,14 +1,26 @@
 <div class="base" [ngStyle]="{ height: height }">
-  <div class="back w-100" [ngStyle]="{ height: height }"></div>
+  <video
+    muted
+    loop
+    autoplay
+    id="myVideo"
+    #video
+    (canplay)="video.play()"
+    (loadedmetadata)="video.muted = true"
+  >
+    <source src="/assets/welcome/wheat.mp4" type="video/mp4" />
+  </video>
   <div class="row">
-    <div class="col-10 py-5 text-center">
-      <p class="h2">
-        Professional web developer
-        <i class="pi pi-briefcase" style="font-size: 1.5rem"></i>
-      </p>
-    </div>
-    <div class="col-2 py-5" style="font-size: 1.5rem">
-      <i class="pi pi-globe" style="font-size: 1.5rem"></i> IT
+    <div class="row w-100 bg-gradient">
+      <div class="col-10 py-5 text-center">
+        <p class="h2">
+          Professional web developer
+          <i class="pi pi-briefcase" style="font-size: 1.5rem"></i>
+        </p>
+      </div>
+      <div class="col-2 py-5" style="font-size: 1.5rem">
+        <i class="pi pi-globe" style="font-size: 1.5rem"></i> EN
+      </div>
     </div>
     @if (toNumber(width)>716) {
     <div class="col-12 pt-5 mt-5">
@@ -17,8 +29,8 @@
     <div class="col-12">
       <h2 class="pl-5">Quality generator</h2>
     </div>
-    }@else { 
-      <div class="col-12 pt-5 mt-5">
+    }@else {
+    <div class="col-12 pt-5 mt-5">
       <p class="h1"><b>Raffaele</b> Caravetta</p>
     </div>
     <div class="col-12">

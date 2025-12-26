@@ -1,7 +1,6 @@
 import { Component, HostListener, inject, signal } from '@angular/core';
 import { MeasuresService } from './services/measures.service';
 import { RouterOutlet } from '@angular/router';
-
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet],

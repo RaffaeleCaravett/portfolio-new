@@ -72,19 +72,43 @@ export class SharedService {
       route: 'snake',
     },
     {
-      id: 8,
+      id: 9,
       title: 'Three.js',
       description: 'Explore some of the numerous Three.js features and tricks.',
       image: '/assets/idea/three.jpg',
       route: 'three',
     },
     {
-      id: 9,
+      id: 10,
+      title: 'Tools',
+      description:
+        'A section where i use some of the tools from primeng, angular material and other external libraries.',
+      image: '/assets/idea/tools.png',
+      route: 'tools',
+    },
+    {
+      id: 11,
+      title: 'Informations',
+      description:
+        'A readme.md of this application. I provide you general informations about technologies used, features and use cases of this website.',
+      image: '/assets/idea/info.png',
+      route: 'info',
+    },
+    {
+      id: 12,
       title: 'About me',
       description:
         'A more personal section, where you can read about me, my studies, my passions and how i spend my life.',
       image: '/assets/idea/about.png',
       route: 'about',
+    },
+    {
+      id: 13,
+      title: 'Error route',
+      description:
+        "A specific wrong route to show the error component, activated in case the desired route doesn't match with declared routes.",
+      image: '/assets/idea/wrong.jpg',
+      route: 'wrong',
     },
   ];
 

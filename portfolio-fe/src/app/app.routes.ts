@@ -7,10 +7,10 @@ export const routes: Routes = [
     path: 'welcome',
     loadChildren: () => Promise.resolve(WelcomeRoutes),
   },
-  { path: '**', component: ErrorComponent },
   {
     path: '',
     redirectTo: 'welcome',
     pathMatch: 'full',
-  }
+  },
+  { path: '**', component: ErrorComponent },
 ];

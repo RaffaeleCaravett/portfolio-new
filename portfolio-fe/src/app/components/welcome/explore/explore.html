@@ -1,20 +1,30 @@
-<app-nav (click)="showMenu = false"></app-nav>
-<div class="row">
+<app-nav
+  (click)="showMenu = false"
+  [showMenu]="navUpdate"
+  (emitMenu)="onReceiveNavUpdate($event)"
+></app-nav>
+<div class="row" (click)="navUpdate = false">
   @if(innerWidth>950){
   <div class="col-2 pt-5">
     <p class="pl-4 h4 item py-1" routerLink="idea">Idea Behind</p>
     @for(i of items; track i.id){
-    <p class="pl-4 h4 item py-1" routerLink="{{ i.route }}">{{ i.title }}</p>
+    <p
+      class="pl-4 h4 item py-1"
+      [ngClass]="i.id == 13 ? 'text-danger' : ''"
+      routerLink="{{ i.route }}"
+    >
+      {{ i.title }}
+    </p>
     }
   </div>
   }@else {
   <div class="col-1 text-start pl-5 pt-5 position-relative">
     <i class="pi pi-bars" style="font-size: 1.5rem" #menu (click)="openMenu()"></i>
     @if(showMenu){
-    <div class="position-absolute top-25 border p-2 menu bg-light">
+    <div class="position-absolute top-25 border p-2 px-4 menu bg-light">
       <p class="pl-4 h4 item py-1" routerLink="idea" (click)="menu.click()">Idea Behind</p>
       @for(i of items; track i.id){
-      <p class="pl-4 h4 item py-1" routerLink="{{ i.route }}" (click)="menu.click()">
+      <p class="pl-4 h4 item py-1" [ngClass]="i.id == 13 ? 'text-danger' : ''" routerLink="{{ i.route }}" (click)="menu.click()">
         {{ i.title }}
       </p>
       }
@@ -27,4 +37,4 @@
     <router-outlet />
   </div>
 </div>
-<app-foot (click)="showMenu = false"></app-foot>
+<app-foot (click)="showMenu = false" (click)="navUpdate = false"></app-foot>

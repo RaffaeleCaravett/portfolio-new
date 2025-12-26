@@ -4,9 +4,9 @@
 // Learn more about theming and how to use it for your application's
 // custom components at https://material.angular.dev/guide/theming
 @use '@angular/material' as mat;
-@use "primeicons/primeicons.css" as *;
-
-@use "ngx-toastr/toastr" as *;
+@use 'primeicons/primeicons.css' as *;
+@use '../node_modules/leaflet/dist/leaflet.css' as *;
+@use 'ngx-toastr/toastr' as *;
 html {
   height: 100%;
   @include mat.theme(
@@ -53,12 +53,12 @@ body {
   font-family: 'Arima', system-ui;
   font-optical-sizing: auto;
 }
-.rounded{
+.rounded {
   border-radius: 1rem !important;
 }
-.rounded-top{
-  border-top-left-radius: 1rem!important;
-  border-top-right-radius: 1rem!important;
+.rounded-top {
+  border-top-left-radius: 1rem !important;
+  border-top-right-radius: 1rem !important;
 }
 .pi {
   font-family: 'primeicons' !important;
@@ -69,4 +69,18 @@ span {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: bold;
+}
+.btn {
+  outline: none !important;
+  box-shadow: none !important;
+}
+.pi-bars {
+  cursor: pointer;
+}
+ul {
+  list-style-type: none;
+}
+.form-control {
+  outline: none !important;
+  box-shadow: none !important;
 }

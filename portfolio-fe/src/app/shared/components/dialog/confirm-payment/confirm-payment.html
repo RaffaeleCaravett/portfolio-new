@@ -1,0 +1,13 @@
+<div mat-dialog-title class="text-center">
+  <p class="h1">Success</p>
+</div>
+<div mat-dialog-content class="py-5 my-5">
+  @if (!showSpinner) {
+  <p class="text-success h3 text-center">
+    <i class="pi pi-verified" style="font-size: 100px"></i>
+  </p>
+  <p class="h3 text-center py-2">Payment approved</p>
+  }@else {
+  <mat-spinner class="m-auto"></mat-spinner>
+  }
+</div>

@@ -32,5 +32,14 @@
   >
     {{ action == 'add' ? 'Add' : 'Remove' }}
   </button>
+  @if(action=='modify'){
+  <button
+    class="btn mx-1 border border-primary"
+    (click)="close(true)"
+    [disabled]="addForm.controls['request'].hasError('maxlength')"
+  >
+    Modify
+  </button>
+  }
   <button class="btn mx-1 border" (click)="close(false)">Back</button>
 </div>
