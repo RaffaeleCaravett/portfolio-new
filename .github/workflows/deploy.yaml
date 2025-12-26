@@ -32,5 +32,5 @@ jobs:
           aws s3 sync portfolio-fe/dist/portfolio-fe/browser/ s3://${{ secrets.S3_BUCKET_NAME }} \
             --delete \
             --exclude ".git/*" \
-            --exclude ".github/*"
+            --exclude ".github/*" \
             --include portfolio-fe/dist/portfolio-fe/browser/media/
