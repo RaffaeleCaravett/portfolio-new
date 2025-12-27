@@ -39,7 +39,7 @@ export class ExploreComponent implements OnInit {
     this.showSpinner = true;
     setTimeout(() => {
       this.showSpinner = false;
-      this.router.navigate(['/welcome/explore/idea']);
+      // this.router.navigate(['/welcome/explore/idea']);
       this.cdr.markForCheck();
     }, 1000);
     this.innerWidth = window.innerWidth;

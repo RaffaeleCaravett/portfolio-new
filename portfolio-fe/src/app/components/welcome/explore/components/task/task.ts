@@ -11,10 +11,11 @@ import {
 import { Tooltip } from 'primeng/tooltip';
 import { MatDialog } from '@angular/material/dialog';
 import { EditTaskComponent } from '../../../../../shared/components/dialog/edit-task/edit-task';
+import { MatTooltip } from "@angular/material/tooltip";
 
 @Component({
   selector: 'app-task',
-  imports: [ReactiveFormsModule, CdkDropList, CdkDrag, Tooltip],
+  imports: [ReactiveFormsModule, CdkDropList, CdkDrag, Tooltip, MatTooltip],
   templateUrl: './task.html',
   styleUrl: './task.scss',
 })

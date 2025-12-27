@@ -18,6 +18,11 @@ import { AboutComponent } from './components/about/about';
 export const ExploreRoutes: Routes = [
   {
     path: '',
+    redirectTo: 'idea',
+    pathMatch: 'full',
+  },
+  {
+    path: '',
     component: ExploreComponent,
     children: [
       {
