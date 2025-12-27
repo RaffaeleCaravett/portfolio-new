@@ -1,5 +1,5 @@
 <div class="base" [ngStyle]="{ height: height }">
-  <video
+  <!-- <video
     muted
     loop
     autoplay
@@ -11,7 +11,8 @@
     poster="/assets/welcome/planetEarth.png"
   >
     <source src="assets/welcome/wheat.mp4" type="video/mp4" />
-  </video>
+  </video> -->
+  <div #threeContainer id="myVideo" [style.width]="height" [ngStyle]="{ height: height }"></div>
   <div class="row">
     <div class="row w-100 bg-gradient">
       <div class="col-10 py-5 text-center">

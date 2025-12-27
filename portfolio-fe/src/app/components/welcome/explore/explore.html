@@ -6,12 +6,12 @@
 <div class="row" (click)="navUpdate = false">
   @if(innerWidth>950){
   <div class="col-2 pt-5">
-    <p class="pl-4 h4 item py-1" routerLink="idea">Idea Behind</p>
+    <p class="pl-4 h4 item py-1" (click)="goToRoute('idea')">Idea Behind</p>
     @for(i of items; track i.id){
     <p
       class="pl-4 h4 item py-1"
       [ngClass]="i.id == 13 ? 'text-danger' : ''"
-      routerLink="{{ i.route }}"
+      (click)="goToRoute(i.route)"
     >
       {{ i.title }}
     </p>
@@ -22,9 +22,13 @@
     <i class="pi pi-bars" style="font-size: 1.5rem" #menu (click)="openMenu()"></i>
     @if(showMenu){
     <div class="position-absolute top-25 border p-2 px-4 menu bg-light">
-      <p class="pl-4 h4 item py-1" routerLink="idea" (click)="menu.click()">Idea Behind</p>
+      <p class="pl-4 h4 item py-1" (click)="menu.click(); goToRoute('idea')">Idea Behind</p>
       @for(i of items; track i.id){
-      <p class="pl-4 h4 item py-1" [ngClass]="i.id == 13 ? 'text-danger' : ''" routerLink="{{ i.route }}" (click)="menu.click()">
+      <p
+        class="pl-4 h4 item py-1"
+        [ngClass]="i.id == 13 ? 'text-danger' : ''"
+        (click)="menu.click(); goToRoute(i.route)"
+      >
         {{ i.title }}
       </p>
       }
@@ -34,7 +38,11 @@
   <div class="col-11 w-100" (click)="showMenu = false" style="height: 125px"></div>
   }
   <div class="col-md-10 m-auto" (click)="showMenu = false">
+    @if(showSpinner){
+    <mat-spinner class="m-auto"></mat-spinner>
+    }@else {
     <router-outlet />
+    }
   </div>
 </div>
 <app-foot (click)="showMenu = false" (click)="navUpdate = false"></app-foot>
